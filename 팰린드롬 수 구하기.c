@@ -1,68 +1,72 @@
 #include <stdio.h>
 #include <math.h>
 
-int main() {
+	int main() {
 
-	int input, length = 0, flag = 0, repos1 = 0, repos2 = 0;
+		int input, length = 0, flag = 0, repos1 = 0, repos2 = 0;
 
-	do {
-		scanf_s("%d", &input);
-		if (input != 0) {											// ÀÚ¸´¼ö ±¸ÇÏ´Â °úÁ¤ ~ ½ÃÀÛ / 0ÀÌ ¾Æ´Ò°æ¿ì ½ÃÀÛ
-			flag = 1;												//flagº¯¼ö·Î ¹Ýº¹¹® ÁøÇà ¿©ºÎ ÆÇ´Ü
-			for (int div = 1; ; div *= 10)
+		do {
+			scanf_s("%d", &input);
+			if (input > 0 && input < 10)
 			{
-				if (div <= input && input / div != 0)
+				printf("yes\n");
+				flag = 1;
+			}
+			else if (input != 0) {											// ìžë¦¿ìˆ˜ êµ¬í•˜ëŠ” ê³¼ì • ~ ì‹œìž‘ / 0ì´ ì•„ë‹ê²½ìš° ì‹œìž‘
+				flag = 1;												//flagë³€ìˆ˜ë¡œ ë°˜ë³µë¬¸ ì§„í–‰ ì—¬ë¶€ íŒë‹¨
+				for (int div = 1;; div *= 10)
 				{
-					length++;
+					if (div <= input && input / div != 0)
+					{
+						length++;
+					}
+					else {
+						break;
+					}
+				}														// ìžë¦¬ìˆ˜ êµ¬í•˜ê¸° ë (ì„±ê³µ í™•ì¸)
+				
+				if (length % 2 == 1) {
+					repos1 = input / pow(10, (length + 1) / 2);
+					repos2 = input % (int)pow(10, length / 2);
+					if (length > 3) {
+						repos1 = (repos1 / 10) + (repos1 % 10 * 10);
+					}
+					if (repos1 == repos2 && input >= 10) {
+						printf("yes\n");
+						repos2 = 0;
+						repos1 = 0;
+						length = 0;
+					}
+					else {
+						printf("no\n");
+						repos1 = 0;
+						repos2 = 0;
+						length = 0;
+					}
 				}
-				else {
-
-					break;
-				}
-			}														// ÀÚ¸®¼ö ±¸ÇÏ±â ³¡ (¼º°ø È®ÀÎ)
-			if (length % 2 == 1) {
-				repos1 = input / pow(10, (length + 1) / 2);
-				repos2 = input % (int)pow(10, length / 2);
-				if (length > 3) {
-					repos1 = (repos1 / 10) + (repos1 % 10 * 10);
-				}
-				if (repos1 == repos2 && input >= 10) {
-					printf("yes\n");
-					repos2 = 0;
-					repos1 = 0;
-					input = 0;
-					length = 0;
-				}
-				else {
-					printf("no\n");
-					repos1 = 0;
-					repos2 = 0;
-					input = 0;
-					length = 0;
+				else if (length % 2 == 0) {
+					repos1 = input / pow(10, length / 2);
+					repos2 = input % (int)pow(10, length / 2);
+					if (length > 2) {
+						repos1 = (repos1 / 10) + (repos1 % 10 * 10);
+					}
+					if (repos1 == repos2) {
+						printf("yes\n");
+						repos2 = 0;
+						repos1 = 0;
+						length = 0;
+					}
+					else {
+						printf("no\n");
+						repos1 = 0;
+						repos2 = 0;
+						length = 0;
+					}
 				}
 			}
-			else if (length % 2 == 0) {
-				repos1 = input / pow(10, length / 2);
-				repos2 = input % (int)pow(10, length / 2);
-				if (length > 2) {
-					repos1 = (repos1 / 10) + (repos1 % 10 * 10);
-				}
-				if (repos1 == repos2) {
-					printf("yes\n");
-					repos2 = 0;
-					repos1 = 0;
-					input = 0;
-					length = 0;
-				}
-				else {
-					printf("no\n");
-					repos1 = 0;
-					repos2 = 0;
-					input = 0;
-					length = 0;
-				}
+			else{
+				flag = 0;
 			}
-		}
-	} while (flag);
-	return 0;
-}
+		} while (flag);
+		return 0;
+	}
