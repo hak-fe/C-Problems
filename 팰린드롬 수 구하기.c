@@ -64,7 +64,7 @@
 					}
 				}
 			}
-			else{
+			else{                                        //0이 입력되면 바로 종료
 				flag = 0;
 			}
 		} while (flag);
