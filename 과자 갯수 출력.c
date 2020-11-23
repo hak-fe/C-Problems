@@ -25,7 +25,6 @@ int main(void) {
 			else
 				printf("%d\n", snack);
 	}
-
 	return 0;
 }
 
