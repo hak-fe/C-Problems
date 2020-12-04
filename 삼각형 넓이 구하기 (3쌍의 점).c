@@ -11,6 +11,9 @@ int main() {
 	if (x1 == x2 || x2 == x3 || x3 == x1) {
 		printf("-1");
 	}
+	else if (y1 == 0 && y2 == 0 && y3 == 0) {
+		printf("-1");
+	}
 	else {
 
 		sum = 0.5 * ((x1 * y2 + x2 * y3 + x3 * y1) - (x2 * y1 + x3 * y2 + x1 * y3));
