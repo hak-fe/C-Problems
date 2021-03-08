@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+#define MAX 1000000
+
+int arr[MAX];
+
+int main(void) {
+
+	int n = 0, max = -1000000, min = 1000000;
+	
+	scanf_s("%d", &n);
+
+	for (int i = 0; i < n; i++)
+	{
+		int want_int = 0;
+
+		scanf_s("%d", &want_int);
+
+		arr[i] = want_int;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] > max) {
+			max = arr[i];
+		}
+		if (arr[i] < min) {
+			min = arr[i];
+		}
+	}
+	printf("%d %d", min, max);
+	return 0;
+}
